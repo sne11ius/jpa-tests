@@ -1,0 +1,27 @@
+Configuration:
+  name: Default
+
+  Appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c - %msg%n"
+
+  Loggers:
+    Root:
+      level: debug
+      AppenderRef:
+        - ref: Console
+    Logger:
+      - name: de.engram.elmsstronghold
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: Console
+      - name: org.springframework
+        level: warn
+      - name: com.zaxxer.hikari
+        level: warn
+      - name: org.hibernate
+        level: warn
