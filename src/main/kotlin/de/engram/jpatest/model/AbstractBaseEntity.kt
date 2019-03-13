@@ -2,19 +2,21 @@ package de.engram.jpatest.model
 
 import au.com.console.kassava.kotlinEquals
 import java.util.*
+import java.util.Objects.hash
 import javax.persistence.Column
 import javax.persistence.Id
 import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
-abstract class AbstractBaseEntity {
+abstract class AbstractBaseEntity(
   @Id
   @Column(name = "id", updatable = false, nullable = false, columnDefinition = "binary(16)")
-  val id = UUID.randomUUID()
-
+  val uuid: UUID = UUID.randomUUID()
+) {
   companion object {
-    private val equalsProperties = arrayOf(AbstractBaseEntity::id)
+    protected val equalsProperties = arrayOf(AbstractBaseEntity::uuid)
   }
 
-  override fun equals(other: Any?) = kotlinEquals(other = other, properties = equalsProperties)
+  final override fun equals(other: Any?) = kotlinEquals(other = other, properties = equalsProperties)
+  final override fun hashCode() = hash(uuid)
 }

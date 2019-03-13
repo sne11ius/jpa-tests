@@ -1,6 +1,5 @@
 package de.engram.jpatest.model.user
 
-import org.springframework.data.jpa.repository.JpaRepository
-import java.util.*
+import de.engram.jpatest.model.AbstractBaseRepository
 
-interface UserRepository : JpaRepository<User, UUID>
+interface UserRepository : AbstractBaseRepository<User>
